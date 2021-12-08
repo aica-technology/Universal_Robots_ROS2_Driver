@@ -81,7 +81,7 @@
     <xacro:include filename="$(find ur_description)/urdf/ur.ros2_control.xacro" />
     <!-- ros2 control instance -->
     <xacro:ur_ros2_control
-      name="URPositionHardwareInterface" prefix="${prefix}"
+      name="UniversalRobotsInterface" prefix="${prefix}"
       use_fake_hardware="$(arg use_fake_hardware)"
       initial_positions="${initial_positions}"
       fake_sensor_commands="$(arg fake_sensor_commands)"
