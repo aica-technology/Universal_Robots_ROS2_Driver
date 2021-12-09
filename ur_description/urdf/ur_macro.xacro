@@ -55,6 +55,7 @@
 
   <xacro:macro name="ur_robot" params="
     prefix
+    robot_ip
     joint_limits_parameters_file
     kinematics_parameters_file
     physical_parameters_file
@@ -73,9 +74,6 @@
       kinematics_parameters_file="${kinematics_parameters_file}"
       physical_parameters_file="${physical_parameters_file}"
       visual_parameters_file="${visual_parameters_file}"/>
-
-    <!-- Data files required by the UR driver -->
-    <xacro:arg name="robot_ip" default="10.0.1.186"/>
 
     <!-- ros2 control include -->
     <xacro:include filename="$(find ur_description)/urdf/ur.ros2_control.xacro" />
