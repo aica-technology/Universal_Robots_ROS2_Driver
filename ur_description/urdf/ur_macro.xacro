@@ -242,7 +242,7 @@
 
     <!-- joints - main serial chain -->
     <joint name="${prefix}base_link-base_link_inertia" type="fixed">
-      <parent link="${prefix}base_link" />
+      <parent link="${base_frame_name}" />
       <child link="${prefix}base_link_inertia" />
       <!-- 'base_link' is REP-103 aligned (so X+ forward), while the internal
            frames of the robot/controller have X+ pointing backwards.
