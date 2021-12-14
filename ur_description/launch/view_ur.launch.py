@@ -102,15 +102,6 @@ def generate_launch_description():
     visual_params = PathJoinSubstitution(
         [FindPackageShare(description_package), "config", ur_type, "visual_parameters.yaml"]
     )
-    script_filename = PathJoinSubstitution(
-        [FindPackageShare("ur_robot_driver"), "resources", "ros_control.urscript"]
-    )
-    input_recipe_filename = PathJoinSubstitution(
-        [FindPackageShare("ur_robot_driver"), "resources", "rtde_input_recipe.txt"]
-    )
-    output_recipe_filename = PathJoinSubstitution(
-        [FindPackageShare("ur_robot_driver"), "resources", "rtde_output_recipe.txt"]
-    )
 
     robot_description_content = Command(
         [
@@ -141,15 +132,6 @@ def generate_launch_description():
             " ",
             "name:=",
             ur_type,
-            " ",
-            "script_filename:=",
-            script_filename,
-            " ",
-            "input_recipe_filename:=",
-            input_recipe_filename,
-            " ",
-            "output_recipe_filename:=",
-            output_recipe_filename,
             " ",
             "prefix:=",
             prefix,

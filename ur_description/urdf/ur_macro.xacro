@@ -55,6 +55,7 @@
 
   <xacro:macro name="ur_robot" params="
     prefix
+    connected_to:=''
     robot_ip
     joint_limits_parameters_file
     kinematics_parameters_file
@@ -89,8 +90,15 @@
     <!--<xacro:ur_arm_transmission prefix="${prefix}" hw_interface="${transmission_hw_interface}" />-->
     <!-- Placeholder for ros2_control transmission which don't yet exist -->
 
+    <xacro:if value="${connected_to == ''}">
+      <link name="world" />
+      <xacro:property name="base_frame_name" value="world"/>
+    </xacro:if>
+    <xacro:unless value="${connected_to == ''}">
+      <xacro:property name="base_frame_name" value="${connected_to}"/>
+    </xacro:unless>
+
     <!-- links -  main serial chain -->
-    <link name="${prefix}base_link"/>
     <link name="${prefix}base_link_inertia">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
@@ -234,7 +242,7 @@
 
     <!-- joints - main serial chain -->
     <joint name="${prefix}base_link-base_link_inertia" type="fixed">
-      <parent link="${prefix}base_link" />
+      <parent link="${base_frame_name}" />
       <child link="${prefix}base_link_inertia" />
       <!-- 'base_link' is REP-103 aligned (so X+ forward), while the internal
            frames of the robot/controller have X+ pointing backwards.
@@ -325,7 +333,7 @@
            the UR controller.
       -->
       <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
-      <parent link="${prefix}base_link"/>
+      <parent link="${base_frame_name}"/>
       <child link="${prefix}base"/>
     </joint>
 
