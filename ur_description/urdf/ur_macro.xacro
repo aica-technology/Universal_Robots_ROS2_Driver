@@ -57,6 +57,7 @@
     prefix
     connected_to:=''
     robot_ip
+    acceleration_limit
     joint_limits_parameters_file
     kinematics_parameters_file
     physical_parameters_file
@@ -84,7 +85,8 @@
       use_fake_hardware="$(arg use_fake_hardware)"
       initial_positions="${initial_positions}"
       fake_sensor_commands="$(arg fake_sensor_commands)"
-      robot_ip="$(arg robot_ip)"/>
+      robot_ip="$(arg robot_ip)"
+      acceleration_limit="$(arg acceleration_limit)"/>
 
     <!-- Add URDF transmission elements (for ros_control) -->
     <!--<xacro:ur_arm_transmission prefix="${prefix}" hw_interface="${transmission_hw_interface}" />-->
