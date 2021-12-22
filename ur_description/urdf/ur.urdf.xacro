@@ -10,6 +10,7 @@
    <xacro:arg name="prefix" default="ur5_" />
    <xacro:arg name="connected_to" default="" />
    <xacro:arg name="robot_ip" default="" />
+   <xacro:arg name="acceleration_limit" default="30.0" />
    <xacro:arg name="transmission_hw_interface" default=""/>
    <xacro:arg name="safety_limits" default="false"/>
    <xacro:arg name="safety_pos_margin" default="0.15"/>
@@ -28,6 +29,7 @@
      prefix="$(arg prefix)"
      robot_ip="$(arg robot_ip)"
      connected_to="$(arg connected_to)"
+     acceleration_limit="$(arg acceleration_limit)"
      joint_limits_parameters_file="${model_config_path}/joint_limits.yaml"
      kinematics_parameters_file="${model_config_path}/default_kinematics.yaml"
      physical_parameters_file="${model_config_path}/physical_parameters.yaml"
