@@ -12,11 +12,11 @@
           <plugin>fake_components/GenericSystem</plugin>
           <param name="fake_sensor_commands">${fake_sensor_commands}</param>
           <param name="state_following_offset">0.0</param>
-          <param name="acceleration_limit">${acceleration_limit}</param>
         </xacro:if>
         <xacro:unless value="${use_fake_hardware}">
           <plugin>robot_interface/universal_robots/UniversalRobotsInterface</plugin>
           <param name="robot_ip">${robot_ip}</param>
+          <param name="acceleration_limit">${acceleration_limit}</param>
         </xacro:unless>
       </hardware>
       <joint name="${prefix}shoulder_pan_joint">
