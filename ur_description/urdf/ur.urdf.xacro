@@ -4,6 +4,7 @@
    <xacro:arg name="name" default="ur"/>
    <!-- import main macro -->
    <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro"/>
+   <xacro:include filename="$(find ur_description)/urdf/robotiq_hand_e_macro.xacro"/>
 
    <!-- parameters -->
    <xacro:arg name="model" default="ur5" />
@@ -19,7 +20,7 @@
    <xacro:arg name="use_fake_hardware" default="false" />
    <xacro:arg name="use_tcp_fts_sensor" default="false" />
    <xacro:arg name="fake_sensor_commands" default="false" />
-   <xacro:arg name="robotiq_hand_e" default="false= />
+   <xacro:arg name="robotiq_hand_e" default="false" />
 
    <!-- locate configuration files -->
    <xacro:property name="initial_positions_file" default="$(find ur_description)/config/initial_positions.yaml"/>
@@ -43,7 +44,7 @@
      fake_sensor_commands="$(arg fake_sensor_commands)"
      initial_positions="${load_yaml(initial_positions_file)}" />
 
-   <xacro:if value="${robotiq_hand_e}">
-     <xacro:robotiq_hand_e attached_to:="${prefix}tool0" />
+   <xacro:if value="$(arg robotiq_hand_e)">
+     <xacro:robotiq_hand_e attached_to="$(arg prefix)tool0" />
    </xacro:if>
 </robot>

@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
 
-  <xacro:macro name="robotiq_e_hand" params="attached_to">
+  <xacro:macro name="robotiq_hand_e" params="attached_to">
 
-    <link name="hand_base_link">
+    <link name="adapter_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://ur_description/meshes/robotiq_hand_e/visual/robotiq_hand_e.dae"/>
+          <mesh filename="package://ur_description/meshes/robotiq/visual/adapter.dae" scale="0.001 0.001 0.001/>
         </geometry>
         <material name="Black">
           <color rgba="0.0 0.0 0.0 1.0"/>
@@ -16,15 +16,40 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://ur_description/meshes/robotiq_hand_e/visual/robotiq_hand_e.stl"/>
+          <mesh filename="package://ur_description/meshes/robotiq/visual/adapter.stl" scale="0.001 0.001 0.001/>
         </geometry>
       </collision>
     </link>
 
-    <joint name="${attached_to}_hand_joint" type="fixed">
+
+    <link name="hand_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://ur_description/meshes/robotiq/visual/hand_e.dae" scale="0.001 0.001 0.001/>
+        </geometry>
+        <material name="Black">
+          <color rgba="0.0 0.0 0.0 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://ur_description/meshes/robotiq/visual/hand_e.stl" scale="0.001 0.001 0.001/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${attached_to}_adapter_joint" type="fixed">
       <parent link="${attached_to}" />
-      <child link="hand_base_link" />
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <child link="adapter_link" />
+      <origin xyz="0 0 0" rpy="1.57 0 1.57" />
+    </joint>
+
+    <joint name="adapter_hand_joint" type="fixed">
+      <parent link="adapter_link />
+      <child link="hand_link" />
+      <origin xyz="0 0 0.1" rpy="0 0 0" />
     </joint>
 
   </xacro:macro>
