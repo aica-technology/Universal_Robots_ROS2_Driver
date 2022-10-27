@@ -21,7 +21,7 @@
       </collision>
     </link>
 
-    <link name="hand_link">
+    <link name="robotiq_hand_e">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -39,24 +39,24 @@
       </collision>
     </link>
 
-    <link name="fingers_link"/>
+    <link name="fingertip"/>
 
     <joint name="${attached_to}_adapter_joint" type="fixed">
       <parent link="${attached_to}" />
       <child link="adapter_link" />
-      <origin rpy="0 0 -1.57" xyz="0 0 0.005"/>
+      <origin rpy="0 0 -1.57" xyz="0 0 0.006" />
     </joint>
 
     <joint name="adapter_hand_joint" type="fixed">
       <parent link="adapter_link" />
-      <child link="hand_link" />
-      <origin xyz="0 0 0.1" rpy="0 0 0.093" />
+      <child link="robotiq_hand_e" />
+      <origin rpy="1.57 0 0" xyz="0 0 0.094" />
     </joint>
 
     <joint name="hand_finger_joint" type="fixed">
-      <parent link="hand_link"/>
-      <child link="fingers_link"/>
-      <origin rpy="-1.57 0 0" xyz="0 0.06 0"/>
+      <parent link="robotiq_hand_e" />
+      <child link="fingertip" />
+      <origin rpy="-1.57 1.57 0" xyz="0 0.06 0" />
     </joint>
 
   </xacro:macro>
